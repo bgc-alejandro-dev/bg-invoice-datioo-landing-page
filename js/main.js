@@ -199,6 +199,33 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryTrack.scrollBy({ left: -galleryTrack.offsetWidth, behavior: 'smooth' });
       });
     }
+
+    // Autoplay
+    let autoplayInterval = setInterval(() => {
+      const index = Math.round(galleryTrack.scrollLeft / galleryTrack.offsetWidth);
+      if (index >= slides.length - 1) {
+        galleryTrack.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        galleryTrack.scrollBy({ left: galleryTrack.offsetWidth, behavior: 'smooth' });
+      }
+    }, 4000);
+
+    const resetAutoplay = () => {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        const index = Math.round(galleryTrack.scrollLeft / galleryTrack.offsetWidth);
+        if (index >= slides.length - 1) {
+          galleryTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          galleryTrack.scrollBy({ left: galleryTrack.offsetWidth, behavior: 'smooth' });
+        }
+      }, 4000);
+    };
+
+    [galleryPrev, galleryNext].forEach(btn => {
+      if (btn) btn.addEventListener('click', resetAutoplay);
+    });
+    galleryDotsContainer.addEventListener('click', resetAutoplay);
   }
 
   // --- Contact Form Validation ---
