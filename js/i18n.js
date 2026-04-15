@@ -79,7 +79,7 @@ const translations = {
     // Contact
     "contact.label": "Contact Us",
     "contact.title": "Ready to Simplify Your Invoicing?",
-    "contact.desc": "Get in touch with us and our team will respond within 24 hours.",
+    "contact.desc": "Get in touch with us and our team will contact you.",
     "contact.phone": "Phone",
     "contact.email": "Email",
     "contact.cta": "Chat on WhatsApp",
@@ -183,7 +183,7 @@ const translations = {
     // Contact
     "contact.label": "Contáctanos",
     "contact.title": "¿Listo para Simplificar tu Facturación?",
-    "contact.desc": "Contáctanos y nuestro equipo te responderá en menos de 24 horas.",
+    "contact.desc": "Contáctanos y nuestro equipo se pondrá en contacto contigo.",
     "contact.phone": "Teléfono",
     "contact.email": "Correo",
     "contact.cta": "Chatea por WhatsApp",
