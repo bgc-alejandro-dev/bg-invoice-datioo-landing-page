@@ -77,40 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Gallery Lightbox ---
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
-  const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
-
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      if (img && lightbox && lightboxImg) {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-
-  const closeLightbox = () => {
-    if (lightbox) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  };
-
-  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeLightbox();
       toggleMobile(false);
     }
   });
@@ -191,6 +159,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('mouseup', () => { isDragging = false; });
+  }
+
+  // --- Gallery Swiper ---
+  const galleryTrack = document.getElementById('galleryTrack');
+  const galleryDotsContainer = document.getElementById('galleryDots');
+  const galleryPrev = document.querySelector('.gallery-prev');
+  const galleryNext = document.querySelector('.gallery-next');
+
+  if (galleryTrack && galleryDotsContainer) {
+    const slides = galleryTrack.querySelectorAll('.gallery-slide');
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        galleryTrack.scrollTo({ left: galleryTrack.offsetWidth * i, behavior: 'smooth' });
+      });
+      galleryDotsContainer.appendChild(dot);
+    });
+
+    const updateGalleryDots = () => {
+      const index = Math.round(galleryTrack.scrollLeft / galleryTrack.offsetWidth);
+      galleryDotsContainer.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    };
+
+    galleryTrack.addEventListener('scroll', updateGalleryDots, { passive: true });
+
+    if (galleryNext) {
+      galleryNext.addEventListener('click', () => {
+        galleryTrack.scrollBy({ left: galleryTrack.offsetWidth, behavior: 'smooth' });
+      });
+    }
+    if (galleryPrev) {
+      galleryPrev.addEventListener('click', () => {
+        galleryTrack.scrollBy({ left: -galleryTrack.offsetWidth, behavior: 'smooth' });
+      });
+    }
   }
 
   // --- Contact Form Validation ---
