@@ -174,30 +174,45 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Contact Form Validation ---
   const form = document.querySelector('.contact-form form');
   if (form) {
+    // Get i18n error messages if available
+    const getErrorMsg = (key, fallback) => {
+      if (window.datiooI18n) {
+        const lang = document.documentElement.lang || 'en';
+        const t = typeof translations !== 'undefined' ? translations[lang] : null;
+        if (t && t[key]) return t[key];
+      }
+      return fallback;
+    };
+
     form.addEventListener('submit', (e) => {
       let valid = true;
 
       const fields = [
-        { name: 'name', label: 'Name', type: 'text' },
-        { name: 'email', label: 'Email', type: 'email' },
-        { name: 'phone', label: 'Phone', type: 'text' },
-        { name: 'message', label: 'Message', type: 'text' }
+        { name: 'name', type: 'text' },
+        { name: 'email', type: 'email' },
+        { name: 'phone', type: 'phone' },
+        { name: 'message', type: 'text' }
       ];
 
       fields.forEach(({ name, type }) => {
         const group = form.querySelector(`[name="${name}"]`).closest('.form-group');
         const input = group.querySelector('input, textarea');
         const error = group.querySelector('.error-message');
+        const value = input.value.trim();
 
         group.classList.remove('error');
 
-        if (!input.value.trim()) {
+        if (!value) {
           group.classList.add('error');
-          if (error) error.textContent = 'This field is required';
+          if (error) error.textContent = getErrorMsg('contact.form.required', 'This field is required');
           valid = false;
-        } else if (type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+        } else if (type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
           group.classList.add('error');
-          if (error) error.textContent = 'Please enter a valid email';
+          if (error) error.textContent = getErrorMsg('contact.form.invalidEmail', 'Please enter a valid email');
+          valid = false;
+        } else if (type === 'phone' && !/^[\+\d\s\-\(\)]{7,20}$/.test(value)) {
+          group.classList.add('error');
+          if (error) error.textContent = getErrorMsg('contact.form.invalidEmail', 'Please enter a valid phone number');
           valid = false;
         }
       });

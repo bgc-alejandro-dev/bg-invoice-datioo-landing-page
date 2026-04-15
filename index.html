@@ -6,6 +6,13 @@
   <title>Datioo — Intelligent Invoice Management Software</title>
   <meta name="description" content="Datioo is a modern SaaS platform that automates invoice management with AI-powered processing, real-time tracking, and seamless workflows for businesses in Colombia and beyond.">
 
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' [CONTACT_URL_PLACEHOLDER];">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
   <!-- Open Graph -->
   <meta property="og:title" content="Datioo — Intelligent Invoice Management Software">
   <meta property="og:description" content="Automate your invoice workflows with AI-powered processing, real-time tracking, and actionable insights.">
@@ -13,9 +20,9 @@
   <meta property="og:type" content="website">
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" referrerpolicy="no-referrer">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
@@ -54,7 +61,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
             <span class="lang-toggle-label">ES</span>
           </button>
-          <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary btn-nav" data-i18n="nav.claim">Claim This Website</a>
+          <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary btn-nav" rel="noopener noreferrer" data-i18n="nav.claim">Claim This Website</a>
         </div>
 
         <div class="nav-right-mobile">
@@ -80,7 +87,7 @@
     <a href="#impact" class="nav-link" data-i18n="nav.howItWorks">How It Works</a>
     <a href="#gallery" class="nav-link" data-i18n="nav.gallery">Gallery</a>
     <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
-    <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary" data-i18n="nav.claim">Claim This Website</a>
+    <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary" rel="noopener noreferrer" data-i18n="nav.claim">Claim This Website</a>
   </div>
 
   <main>
@@ -367,28 +374,28 @@
                 </div>
               </div>
             </div>
-            <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary" style="width:100%" data-i18n="contact.claim">Claim This Website</a>
+            <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary" rel="noopener noreferrer" style="width:100%" data-i18n="contact.claim">Claim This Website</a>
           </div>
           <div class="contact-form">
-            <form action="[CONTACT_URL_PLACEHOLDER]/45576ac9f1078da893e67455fe53035c" method="POST">
+            <form action="[CONTACT_URL_PLACEHOLDER]/45576ac9f1078da893e67455fe53035c" method="POST" autocomplete="off">
               <div class="form-group">
                 <label for="name" data-i18n="contact.form.name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" data-i18n-ph="contact.form.namePh" required>
+                <input type="text" id="name" name="name" placeholder="Your name" data-i18n-ph="contact.form.namePh" required autocomplete="name" maxlength="100">
                 <span class="error-message"></span>
               </div>
               <div class="form-group">
                 <label for="email" data-i18n="contact.form.email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="you@company.com" data-i18n-ph="contact.form.emailPh" required>
+                <input type="email" id="email" name="email" placeholder="you@company.com" data-i18n-ph="contact.form.emailPh" required autocomplete="email" maxlength="254">
                 <span class="error-message"></span>
               </div>
               <div class="form-group">
                 <label for="phone" data-i18n="contact.form.phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="+57 300 000 0000" data-i18n-ph="contact.form.phonePh" required>
+                <input type="tel" id="phone" name="phone" placeholder="+57 300 000 0000" data-i18n-ph="contact.form.phonePh" required autocomplete="tel" maxlength="20" pattern="[\+\d\s\-\(\)]{7,20}">
                 <span class="error-message"></span>
               </div>
               <div class="form-group">
                 <label for="message" data-i18n="contact.form.message">Message</label>
-                <textarea id="message" name="message" placeholder="Tell us about your invoicing needs..." data-i18n-ph="contact.form.messagePh" required></textarea>
+                <textarea id="message" name="message" placeholder="Tell us about your invoicing needs..." data-i18n-ph="contact.form.messagePh" required maxlength="2000"></textarea>
                 <span class="error-message"></span>
               </div>
               <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Send Message</button>
@@ -416,7 +423,7 @@
             <li><a href="#impact" data-i18n="nav.howItWorks">How It Works</a></li>
             <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
             <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-            <li><a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" data-i18n="nav.claim">Claim This Website</a></li>
+            <li><a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" rel="noopener noreferrer" data-i18n="nav.claim">Claim This Website</a></li>
           </ul>
         </div>
         <div class="footer-links">

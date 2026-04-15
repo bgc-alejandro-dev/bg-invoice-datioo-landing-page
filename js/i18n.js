@@ -216,6 +216,30 @@ const translations = {
 
 (function() {
   const STORAGE_KEY = 'datioo-lang';
+  const ALLOWED_TAGS = new Set(['SPAN', 'STRONG', 'EM', 'BR']);
+  const ALLOWED_ATTRS = new Set(['class']);
+
+  function sanitizeHTML(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html;
+    const fragment = template.content;
+
+    fragment.querySelectorAll('*').forEach(node => {
+      if (!ALLOWED_TAGS.has(node.tagName)) {
+        node.replaceWith(document.createTextNode(node.textContent));
+        return;
+      }
+      Array.from(node.attributes).forEach(attr => {
+        if (!ALLOWED_ATTRS.has(attr.name)) {
+          node.removeAttribute(attr.name);
+        }
+      });
+    });
+
+    const div = document.createElement('div');
+    div.appendChild(fragment.cloneNode(true));
+    return div.innerHTML;
+  }
 
   function getPreferredLang() {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -236,10 +260,10 @@ const translations = {
       if (t[key]) el.textContent = t[key];
     });
 
-    // Update innerHTML (for elements with HTML like spans)
+    // Update innerHTML with sanitization (for elements with safe HTML like spans)
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
       const key = el.getAttribute('data-i18n-html');
-      if (t[key]) el.innerHTML = t[key];
+      if (t[key]) el.innerHTML = sanitizeHTML(t[key]);
     });
 
     // Update placeholders
