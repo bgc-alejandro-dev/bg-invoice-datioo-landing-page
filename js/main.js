@@ -51,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileOverlay.addEventListener('click', () => toggleMobile(false));
   }
 
+  const mobileClose = document.querySelector('.mobile-nav-close');
+  if (mobileClose) {
+    mobileClose.addEventListener('click', () => toggleMobile(false));
+  }
+
   // Close mobile nav on link click
   document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
     link.addEventListener('click', () => toggleMobile(false));

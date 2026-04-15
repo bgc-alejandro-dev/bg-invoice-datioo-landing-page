@@ -395,6 +395,28 @@ section {
   display: block;
 }
 
+.mobile-nav-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--color-text);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: background var(--transition);
+}
+
+.mobile-nav-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .mobile-nav .nav-link {
   display: block;
   color: var(--color-text);
