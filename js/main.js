@@ -119,21 +119,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const carouselTrack = document.getElementById('servicesTrack');
   const carouselPrev = document.querySelector('.carousel-prev');
   const carouselNext = document.querySelector('.carousel-next');
-  const carouselDots = document.querySelectorAll('.carousel-dot');
+  const dotsContainer = document.getElementById('servicesDots');
 
-  if (carouselTrack && carouselPrev && carouselNext) {
+  if (carouselTrack && carouselPrev && carouselNext && dotsContainer) {
+    const cards = carouselTrack.querySelectorAll('.service-card');
+    const gap = 24;
+
+    const getVisibleCount = () => {
+      const card = cards[0];
+      if (!card) return 1;
+      return Math.round(carouselTrack.offsetWidth / (card.offsetWidth + gap)) || 1;
+    };
+
+    const getPageCount = () => Math.max(1, cards.length - getVisibleCount() + 1);
+
     const getSlideWidth = () => {
-      const card = carouselTrack.querySelector('.service-card');
+      const card = cards[0];
       if (!card) return 0;
-      const gap = 24;
       return card.offsetWidth + gap;
+    };
+
+    const buildDots = () => {
+      const count = getPageCount();
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot';
+        dot.addEventListener('click', () => {
+          carouselTrack.scrollTo({ left: getSlideWidth() * i, behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+      }
+      updateCarouselDots();
     };
 
     const updateCarouselDots = () => {
       const sw = getSlideWidth();
       if (!sw) return;
-      const index = Math.round(carouselTrack.scrollLeft / sw);
-      carouselDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      const index = Math.min(Math.round(carouselTrack.scrollLeft / sw), getPageCount() - 1);
+      dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
     };
 
     carouselNext.addEventListener('click', () => {
@@ -144,13 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
       carouselTrack.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
     });
 
-    carouselDots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        carouselTrack.scrollTo({ left: getSlideWidth() * i, behavior: 'smooth' });
-      });
-    });
-
     carouselTrack.addEventListener('scroll', updateCarouselDots, { passive: true });
+    window.addEventListener('resize', buildDots);
+    buildDots();
 
     // Drag-to-scroll
     let isDragging = false;
