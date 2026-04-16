@@ -13,7 +13,6 @@ const translations = {
     "nav.howItWorks": "How It Works",
     "nav.gallery": "Gallery",
     "nav.contact": "Contact",
-    "nav.claim": "Claim This Website",
 
     // Hero
     "hero.badge": "AI-Powered Invoice Management",
@@ -80,10 +79,10 @@ const translations = {
     // Contact
     "contact.label": "Contact Us",
     "contact.title": "Ready to Simplify Your Invoicing?",
-    "contact.desc": "Send us a message and our team will get back to you within 24 hours. Or claim this website to start managing your online presence today.",
+    "contact.desc": "Get in touch with us and our team will contact you.",
     "contact.phone": "Phone",
     "contact.email": "Email",
-    "contact.claim": "Claim This Website",
+    "contact.cta": "Chat on WhatsApp",
     "contact.form.name": "Full Name",
     "contact.form.namePh": "Your name",
     "contact.form.email": "Email Address",
@@ -118,7 +117,6 @@ const translations = {
     "nav.howItWorks": "Cómo Funciona",
     "nav.gallery": "Galería",
     "nav.contact": "Contacto",
-    "nav.claim": "Reclama Este Sitio",
 
     // Hero
     "hero.badge": "Gestión de Facturas con IA",
@@ -185,10 +183,10 @@ const translations = {
     // Contact
     "contact.label": "Contáctanos",
     "contact.title": "¿Listo para Simplificar tu Facturación?",
-    "contact.desc": "Envíanos un mensaje y nuestro equipo te responderá en menos de 24 horas. O reclama este sitio web para comenzar a gestionar tu presencia en línea hoy.",
+    "contact.desc": "Contáctanos y nuestro equipo se pondrá en contacto contigo.",
     "contact.phone": "Teléfono",
     "contact.email": "Correo",
-    "contact.claim": "Reclama Este Sitio",
+    "contact.cta": "Chatea por WhatsApp",
     "contact.form.name": "Nombre Completo",
     "contact.form.namePh": "Tu nombre",
     "contact.form.email": "Correo Electrónico",

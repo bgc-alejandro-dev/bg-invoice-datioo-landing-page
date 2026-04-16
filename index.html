@@ -6,11 +6,8 @@
   <title>Datioo — Intelligent Invoice Management Software</title>
   <meta name="description" content="Datioo is a modern SaaS platform that automates invoice management with AI-powered processing, real-time tracking, and seamless workflows for businesses in Colombia and beyond.">
 
-  <!-- Security Headers -->
-  <!-- CSP stays as a meta tag so the template engine can substitute [CONTACT_URL_PLACEHOLDER].
-       Transport/framing/sniffing headers live in _headers (real HTTP headers) since browsers ignore
-       X-Frame-Options, X-Content-Type-Options and frame-ancestors when delivered via <meta>. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self' [CONTACT_URL_PLACEHOLDER];">
+  <!-- Security Headers — transport/framing/sniffing headers live in _headers (Cloudflare) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self';">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Datioo — Intelligent Invoice Management Software">
@@ -38,8 +35,8 @@
     "description": "AI-powered invoice management SaaS platform",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "telephone": "+576019301478",
-    "email": "jonathan@barbaragoretty.com"
+    "telephone": "+5719301478",
+    "email": "info@barbaragoretty.com"
   }
   </script>
 </head>
@@ -63,7 +60,6 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
             <span class="lang-toggle-label">ES</span>
           </button>
-          <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary btn-nav" rel="noopener noreferrer" data-i18n="nav.claim">Claim This Website</a>
         </div>
 
         <div class="nav-right-mobile">
@@ -84,12 +80,12 @@
   <!-- Mobile Nav -->
   <div class="mobile-nav-overlay"></div>
   <div class="mobile-nav">
+    <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
     <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
     <a href="#services" class="nav-link" data-i18n="nav.services">Services</a>
     <a href="#impact" class="nav-link" data-i18n="nav.howItWorks">How It Works</a>
     <a href="#gallery" class="nav-link" data-i18n="nav.gallery">Gallery</a>
     <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
-    <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary" rel="noopener noreferrer" data-i18n="nav.claim">Claim This Website</a>
   </div>
 
   <main>
@@ -105,7 +101,7 @@
           <h1 data-i18n-html="hero.title">Smart Invoicing for <span class="highlight">Modern Businesses</span></h1>
           <p class="hero-subtitle" data-i18n="hero.subtitle">Datioo automates your entire invoice workflow — from upload to tracking — so you can focus on growing your business, not chasing paperwork.</p>
           <div class="hero-buttons">
-            <a href="#contact" class="btn btn-primary" data-i18n="hero.cta">Get a Free Demo</a>
+            <a href="https://wa.me/5719301478" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="hero.cta">Get a Free Demo</a>
             <a href="#about" class="btn btn-secondary" data-i18n="hero.secondary">Learn More</a>
           </div>
         </div>
@@ -119,52 +115,52 @@
     <!-- ══════ ABOUT ══════ -->
     <section class="about" id="about">
       <div class="container">
-        <div class="about-grid fade-in">
+        <div class="about-top fade-in">
           <div class="about-text">
             <span class="section-label" data-i18n="about.label">About Datioo</span>
             <h2 data-i18n="about.title">Invoice Management, Reimagined</h2>
             <p data-i18n="about.desc">Datioo was built to eliminate the chaos of manual invoice processing. Our platform uses artificial intelligence to extract, categorize, and track every invoice automatically — turning hours of tedious data entry into a seamless, real-time workflow. Whether you manage a handful of invoices or thousands per month, Datioo gives your team the clarity and speed to stay on top of your finances without the headache.</p>
-            <div class="about-features">
-              <div class="about-feature">
-                <div class="about-feature-icon">
-                  <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.feat1.title">Lightning-Fast Processing</h4>
-                  <p data-i18n="about.feat1.desc">Upload an invoice and get results in under 30 seconds with AI-powered OCR.</p>
-                </div>
-              </div>
-              <div class="about-feature">
-                <div class="about-feature-icon">
-                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.feat2.title">Bank-Grade Security</h4>
-                  <p data-i18n="about.feat2.desc">Your financial data is encrypted end-to-end and stored securely in the cloud.</p>
-                </div>
-              </div>
-              <div class="about-feature">
-                <div class="about-feature-icon">
-                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.feat3.title">Effortless Experience</h4>
-                  <p data-i18n="about.feat3.desc">An intuitive dashboard anyone on your team can use from day one.</p>
-                </div>
-              </div>
-              <div class="about-feature">
-                <div class="about-feature-icon">
-                  <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.feat4.title">Real-Time Analytics</h4>
-                  <p data-i18n="about.feat4.desc">Track invoice status, payment timelines, and financial health at a glance.</p>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="about-image">
             <img src="images/custom-2.png" alt="Datioo dashboard showing invoice balance and tracking" loading="lazy">
+          </div>
+        </div>
+        <div class="about-features fade-in">
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.feat1.title">Lightning-Fast Processing</h4>
+              <p data-i18n="about.feat1.desc">Upload an invoice and get results in under 30 seconds with AI-powered OCR.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.feat2.title">Bank-Grade Security</h4>
+              <p data-i18n="about.feat2.desc">Your financial data is encrypted end-to-end and stored securely in the cloud.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.feat3.title">Effortless Experience</h4>
+              <p data-i18n="about.feat3.desc">An intuitive dashboard anyone on your team can use from day one.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="about.feat4.title">Real-Time Analytics</h4>
+              <p data-i18n="about.feat4.desc">Track invoice status, payment timelines, and financial health at a glance.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -220,13 +216,7 @@
             <button class="carousel-btn carousel-prev" aria-label="Previous service">
               <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-            <div class="carousel-dots" id="servicesDots">
-              <span class="carousel-dot active"></span>
-              <span class="carousel-dot"></span>
-              <span class="carousel-dot"></span>
-              <span class="carousel-dot"></span>
-              <span class="carousel-dot"></span>
-            </div>
+            <div class="carousel-dots" id="servicesDots"></div>
             <button class="carousel-btn carousel-next" aria-label="Next service">
               <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
@@ -243,15 +233,26 @@
           <h2 data-i18n="gallery.title">See Datioo in Action</h2>
           <p data-i18n="gallery.desc">Take a look at the powerful interface designed to make invoice management effortless and intuitive.</p>
         </div>
-        <div class="gallery-grid fade-in">
-          <div class="gallery-item">
-            <img src="images/var-custom-1.png" alt="Datioo platform interface" loading="lazy">
+        <div class="gallery-swiper fade-in">
+          <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-slide">
+              <img src="images/var-custom-1.png" alt="Datioo platform interface" loading="lazy">
+            </div>
+            <div class="gallery-slide">
+              <img src="images/custom-2.png" alt="Datioo invoice dashboard overview" loading="lazy">
+            </div>
+            <div class="gallery-slide">
+              <img src="images/custom-3.png" alt="Datioo invoice upload interface" loading="lazy">
+            </div>
           </div>
-          <div class="gallery-item">
-            <img src="images/custom-2.png" alt="Datioo invoice dashboard overview" loading="lazy">
-          </div>
-          <div class="gallery-item">
-            <img src="images/custom-3.png" alt="Datioo invoice upload interface" loading="lazy">
+          <div class="gallery-controls">
+            <button class="gallery-btn gallery-prev" aria-label="Previous image">
+              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="gallery-dots" id="galleryDots"></div>
+            <button class="gallery-btn gallery-next" aria-label="Next image">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -340,7 +341,7 @@
 
         <div class="impact-cta fade-in">
           <p data-i18n="impact.cta">Ready to transform your invoicing process?</p>
-          <a href="#contact" class="btn btn-primary" data-i18n="impact.ctaBtn">Get a Free Demo</a>
+          <a href="https://wa.me/5719301478" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="impact.ctaBtn">Get a Free Demo</a>
         </div>
       </div>
     </section>
@@ -352,62 +353,30 @@
         <div class="section-header fade-in">
           <span class="section-label" data-i18n="contact.label">Contact Us</span>
           <h2 data-i18n="contact.title">Ready to Simplify Your Invoicing?</h2>
-          <p data-i18n="contact.desc">Send us a message and our team will get back to you within 24 hours. Or claim this website to start managing your online presence today.</p>
+          <p data-i18n="contact.desc">Contáctanos y nuestro equipo se pondrá en contacto contigo.</p>
         </div>
-        <div class="contact-grid fade-in">
-          <div class="contact-info">
-            <div class="contact-info-list">
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                </div>
-                <div>
-                  <h4 data-i18n="contact.phone">Phone</h4>
-                  <a href="tel:+576019301478">+57 601 930 1478</a>
-                </div>
+        <div class="contact-center fade-in">
+          <div class="contact-info-centered">
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
               </div>
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div>
-                  <h4 data-i18n="contact.email">Email</h4>
-                  <a href="mailto:jonathan@barbaragoretty.com">jonathan@barbaragoretty.com</a>
-                </div>
+              <div>
+                <h4 data-i18n="contact.phone">Teléfono</h4>
+                <a href="https://wa.me/5719301478" target="_blank" rel="noopener noreferrer">+57 1 930 1478</a>
               </div>
             </div>
-            <a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" class="btn btn-primary" rel="noopener noreferrer" style="width:100%" data-i18n="contact.claim">Claim This Website</a>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <h4 data-i18n="contact.email">Email</h4>
+                <a href="mailto:info@barbaragoretty.com">info@barbaragoretty.com</a>
+              </div>
+            </div>
           </div>
-          <div class="contact-form">
-            <form action="[CONTACT_URL_PLACEHOLDER]/45576ac9f1078da893e67455fe53035c" method="POST" autocomplete="off">
-              <!-- Honeypot: bots fill every field; humans never see this one. -->
-              <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
-                <label for="website">Website</label>
-                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-              </div>
-              <div class="form-group">
-                <label for="name" data-i18n="contact.form.name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" data-i18n-ph="contact.form.namePh" required autocomplete="name" maxlength="100">
-                <span class="error-message"></span>
-              </div>
-              <div class="form-group">
-                <label for="email" data-i18n="contact.form.email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="you@company.com" data-i18n-ph="contact.form.emailPh" required autocomplete="email" maxlength="254">
-                <span class="error-message"></span>
-              </div>
-              <div class="form-group">
-                <label for="phone" data-i18n="contact.form.phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="+57 300 000 0000" data-i18n-ph="contact.form.phonePh" required autocomplete="tel" maxlength="20" pattern="[\+\d\s\-\(\)]{7,20}">
-                <span class="error-message"></span>
-              </div>
-              <div class="form-group">
-                <label for="message" data-i18n="contact.form.message">Message</label>
-                <textarea id="message" name="message" placeholder="Tell us about your invoicing needs..." data-i18n-ph="contact.form.messagePh" required maxlength="2000"></textarea>
-                <span class="error-message"></span>
-              </div>
-              <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Send Message</button>
-            </form>
-          </div>
+          <a href="https://wa.me/5719301478" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-cta-wa" data-i18n="contact.cta">Chatea por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -430,33 +399,26 @@
             <li><a href="#impact" data-i18n="nav.howItWorks">How It Works</a></li>
             <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
             <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-            <li><a href="[CLAIM_URL_PLACEHOLDER]/e4c038a4ec99cae8b2f19ac571503fae" rel="noopener noreferrer" data-i18n="nav.claim">Claim This Website</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h4 data-i18n="footer.contact">Contact</h4>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            <a href="tel:+576019301478">+57 601 930 1478</a>
+            <a href="https://wa.me/5719301478" target="_blank" rel="noopener noreferrer">+57 1 930 1478</a>
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <a href="mailto:jonathan@barbaragoretty.com">jonathan@barbaragoretty.com</a>
+            <a href="mailto:info@barbaragoretty.com">info@barbaragoretty.com</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span class="current-year">2026</span> Datioo. <span data-i18n="footer.rights">All rights reserved.</span></p>
-        <p data-i18n="footer.powered">Powered by SiteForge</p>
+        <p>&copy; 2026 <a href="https://barbaragoretty.com/" target="_blank" rel="noopener noreferrer">Barbara Goretty Consulting OU</a>. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+        <p>Powered by <strong>SiteForge</strong> — Barbara Goretty Consulting</p>
       </div>
     </div>
   </footer>
-
-  <!-- Lightbox Modal -->
-  <div class="lightbox">
-    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-    <img src="" alt="Gallery image">
-  </div>
 
   <!-- Back to Top -->
   <button class="back-to-top" aria-label="Back to top">

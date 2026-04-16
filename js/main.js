@@ -51,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileOverlay.addEventListener('click', () => toggleMobile(false));
   }
 
+  const mobileClose = document.querySelector('.mobile-nav-close');
+  if (mobileClose) {
+    mobileClose.addEventListener('click', () => toggleMobile(false));
+  }
+
   // Close mobile nav on link click
   document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
     link.addEventListener('click', () => toggleMobile(false));
@@ -77,40 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Gallery Lightbox ---
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
-  const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
-
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      if (img && lightbox && lightboxImg) {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-
-  const closeLightbox = () => {
-    if (lightbox) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  };
-
-  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeLightbox();
       toggleMobile(false);
     }
   });
@@ -119,21 +92,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const carouselTrack = document.getElementById('servicesTrack');
   const carouselPrev = document.querySelector('.carousel-prev');
   const carouselNext = document.querySelector('.carousel-next');
-  const carouselDots = document.querySelectorAll('.carousel-dot');
+  const dotsContainer = document.getElementById('servicesDots');
 
-  if (carouselTrack && carouselPrev && carouselNext) {
+  if (carouselTrack && carouselPrev && carouselNext && dotsContainer) {
+    const cards = carouselTrack.querySelectorAll('.service-card');
+    const gap = 24;
+
+    const getVisibleCount = () => {
+      const card = cards[0];
+      if (!card) return 1;
+      return Math.round(carouselTrack.offsetWidth / (card.offsetWidth + gap)) || 1;
+    };
+
+    const getPageCount = () => Math.max(1, cards.length - getVisibleCount() + 1);
+
     const getSlideWidth = () => {
-      const card = carouselTrack.querySelector('.service-card');
+      const card = cards[0];
       if (!card) return 0;
-      const gap = 24;
       return card.offsetWidth + gap;
+    };
+
+    const buildDots = () => {
+      const count = getPageCount();
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot';
+        dot.addEventListener('click', () => {
+          carouselTrack.scrollTo({ left: getSlideWidth() * i, behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+      }
+      updateCarouselDots();
     };
 
     const updateCarouselDots = () => {
       const sw = getSlideWidth();
       if (!sw) return;
-      const index = Math.round(carouselTrack.scrollLeft / sw);
-      carouselDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      const index = Math.min(Math.round(carouselTrack.scrollLeft / sw), getPageCount() - 1);
+      dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
     };
 
     carouselNext.addEventListener('click', () => {
@@ -144,13 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
       carouselTrack.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
     });
 
-    carouselDots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        carouselTrack.scrollTo({ left: getSlideWidth() * i, behavior: 'smooth' });
-      });
-    });
-
     carouselTrack.addEventListener('scroll', updateCarouselDots, { passive: true });
+    window.addEventListener('resize', buildDots);
+    buildDots();
 
     // Drag-to-scroll
     let isDragging = false;
@@ -169,6 +164,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('mouseup', () => { isDragging = false; });
+  }
+
+  // --- Gallery Swiper ---
+  const galleryTrack = document.getElementById('galleryTrack');
+  const galleryDotsContainer = document.getElementById('galleryDots');
+  const galleryPrev = document.querySelector('.gallery-prev');
+  const galleryNext = document.querySelector('.gallery-next');
+
+  if (galleryTrack && galleryDotsContainer) {
+    const slides = galleryTrack.querySelectorAll('.gallery-slide');
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        galleryTrack.scrollTo({ left: galleryTrack.offsetWidth * i, behavior: 'smooth' });
+      });
+      galleryDotsContainer.appendChild(dot);
+    });
+
+    const updateGalleryDots = () => {
+      const index = Math.round(galleryTrack.scrollLeft / galleryTrack.offsetWidth);
+      galleryDotsContainer.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    };
+
+    galleryTrack.addEventListener('scroll', updateGalleryDots, { passive: true });
+
+    if (galleryNext) {
+      galleryNext.addEventListener('click', () => {
+        galleryTrack.scrollBy({ left: galleryTrack.offsetWidth, behavior: 'smooth' });
+      });
+    }
+    if (galleryPrev) {
+      galleryPrev.addEventListener('click', () => {
+        galleryTrack.scrollBy({ left: -galleryTrack.offsetWidth, behavior: 'smooth' });
+      });
+    }
+
+    // Autoplay
+    let autoplayInterval = setInterval(() => {
+      const index = Math.round(galleryTrack.scrollLeft / galleryTrack.offsetWidth);
+      if (index >= slides.length - 1) {
+        galleryTrack.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        galleryTrack.scrollBy({ left: galleryTrack.offsetWidth, behavior: 'smooth' });
+      }
+    }, 4000);
+
+    const resetAutoplay = () => {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        const index = Math.round(galleryTrack.scrollLeft / galleryTrack.offsetWidth);
+        if (index >= slides.length - 1) {
+          galleryTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          galleryTrack.scrollBy({ left: galleryTrack.offsetWidth, behavior: 'smooth' });
+        }
+      }, 4000);
+    };
+
+    [galleryPrev, galleryNext].forEach(btn => {
+      if (btn) btn.addEventListener('click', resetAutoplay);
+    });
+    galleryDotsContainer.addEventListener('click', resetAutoplay);
   }
 
   // --- Contact Form Validation ---
