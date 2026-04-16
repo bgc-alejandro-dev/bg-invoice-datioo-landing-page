@@ -185,6 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     form.addEventListener('submit', (e) => {
+      // Honeypot: if a bot filled the hidden "website" field, abort silently.
+      const honeypot = form.querySelector('input[name="website"]');
+      if (honeypot && honeypot.value.trim() !== '') {
+        e.preventDefault();
+        return;
+      }
+
       let valid = true;
 
       const fields = [

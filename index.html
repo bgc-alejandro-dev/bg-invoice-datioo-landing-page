@@ -7,11 +7,10 @@
   <meta name="description" content="Datioo is a modern SaaS platform that automates invoice management with AI-powered processing, real-time tracking, and seamless workflows for businesses in Colombia and beyond.">
 
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' [CONTACT_URL_PLACEHOLDER];">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <!-- CSP stays as a meta tag so the template engine can substitute [CONTACT_URL_PLACEHOLDER].
+       Transport/framing/sniffing headers live in _headers (real HTTP headers) since browsers ignore
+       X-Frame-Options, X-Content-Type-Options and frame-ancestors when delivered via <meta>. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self' [CONTACT_URL_PLACEHOLDER];">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Datioo — Intelligent Invoice Management Software">
@@ -381,6 +380,11 @@
           </div>
           <div class="contact-form">
             <form action="[CONTACT_URL_PLACEHOLDER]/45576ac9f1078da893e67455fe53035c" method="POST" autocomplete="off">
+              <!-- Honeypot: bots fill every field; humans never see this one. -->
+              <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+              </div>
               <div class="form-group">
                 <label for="name" data-i18n="contact.form.name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Your name" data-i18n-ph="contact.form.namePh" required autocomplete="name" maxlength="100">
